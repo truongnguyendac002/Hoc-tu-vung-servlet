@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ôn Tập Từ Vựng</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .vocab-card {
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .vocab-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .vocab-word {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+        .feedback {
+            font-size: 20px;
+            margin-top: 15px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Ôn Tập Từ Vựng</h2>
+        <div class="vocab-card" id="vocabCard">
+            <img src="https://dictionary.cambridge.org/images/thumb/apple_noun_001_00650.jpg?version=6.0.30" alt="Hình ảnh từ vựng" class="vocab-image">
+            <div class="vocab-word">Apple</div>
+            <input type="text" class="form-control mt-3" id="meaningInput" placeholder="Nhập nghĩa của từ">
+            <button class="btn btn-primary mt-3 w-100" id="checkButton">Kiểm Tra</button>
+            <div class="feedback mt-3" id="feedback"></div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('checkButton').addEventListener('click', function() {
+            var userInput = document.getElementById('meaningInput').value.trim().toLowerCase();
+            var correctAnswer = "correct meaning";  // Thay thế bằng nghĩa chính xác của từ
+            var feedback = document.getElementById('feedback');
+
+            if (userInput === correctAnswer) {
+                feedback.textContent = "Chính xác!";
+                feedback.classList.remove('text-danger');
+                feedback.classList.add('text-success');
+            } else {
+                feedback.textContent = "Sai rồi, nghĩa đúng là: " + correctAnswer;
+                feedback.classList.remove('text-success');
+                feedback.classList.add('text-danger');
+            }
+            feedback.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
