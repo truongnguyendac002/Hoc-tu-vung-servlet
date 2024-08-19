@@ -1,6 +1,6 @@
 package org.ptit.webhoctienganh.model;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Student {
     private String studentID;
@@ -42,7 +42,7 @@ public class Student {
     public String getPhone() { return phone; }
     public void setPhone(String phone) { this.phone = phone; }
 
-    public Date getDateOfBirth() { return dateOfBirth; }
+    public java.sql.Date getDateOfBirth() { return dateOfBirth; }
     public void setDateOfBirth(Date dateOfBirth) { this.dateOfBirth = dateOfBirth; }
 
     public String getGender() { return gender; }

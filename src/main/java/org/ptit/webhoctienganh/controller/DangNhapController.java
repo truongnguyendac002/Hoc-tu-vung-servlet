@@ -8,8 +8,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.ptit.webhoctienganh.dao.AccountDAO;
 import org.ptit.webhoctienganh.dao.StudentDAO;
+import org.ptit.webhoctienganh.dao.TeacherDAO;
 import org.ptit.webhoctienganh.model.Account;
 import org.ptit.webhoctienganh.model.Student;
+import org.ptit.webhoctienganh.model.Teacher;
 
 import java.io.IOException;
 
@@ -48,7 +50,16 @@ public class DangNhapController extends HttpServlet {
                     response.sendRedirect("dangnhap.jsp?error=2"); // Error if student not found
                 }
             } else if ("teacher".equals(role)) {
-                response.sendRedirect("teacherhome.jsp"); // Redirect to teacher home page
+                TeacherDAO teacherDAO = new TeacherDAO();
+                Teacher teacher = teacherDAO.getTeacherByAccountID(account.getAccountID());
+
+                if (teacher != null) {
+                    session.setAttribute("teacher", teacher);
+                    response.sendRedirect("teacherhome"); // Redirect to teacher home page
+                } else {
+                    response.sendRedirect("dangnhap.jsp?error=3"); // Error if teacher not found
+                }
+                // Redirect to teacher home page
             } else {
                 response.sendRedirect("index.jsp"); // Default redirect if role is not recognized
             }
