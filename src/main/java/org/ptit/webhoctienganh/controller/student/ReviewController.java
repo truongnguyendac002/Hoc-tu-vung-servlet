@@ -31,7 +31,6 @@ public class ReviewController extends HttpServlet {
         List<Vocabulary> reviewWords = studentVocabDAO.getWordsForReview(studentID, courseID);
 
         if (reviewWords.isEmpty()) {
-            // Redirect to a page showing a message if there are no words to review
             response.sendRedirect("noWordsToReview.jsp");
             return;
         }
@@ -46,7 +45,6 @@ public class ReviewController extends HttpServlet {
             }
         }
 
-        // Ensure index is within bounds
         if (index >= reviewWords.size() || index < 0) {
             index = 0;
         }

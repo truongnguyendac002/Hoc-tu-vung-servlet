@@ -19,12 +19,10 @@ import java.io.IOException;
 public class DangNhapController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    // Handle GET requests to display the login page
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("dangnhap.jsp").forward(request, response);
     }
 
-    // Handle POST requests for login logic
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -39,7 +37,6 @@ public class DangNhapController extends HttpServlet {
             String role = account.getRole();
 
             if ("student".equals(role)) {
-                // Retrieve the Student object based on the Account
                 StudentDAO studentDAO = new StudentDAO();
                 Student student = studentDAO.getStudentByAccountID(account.getAccountID());
 
@@ -59,7 +56,6 @@ public class DangNhapController extends HttpServlet {
                 } else {
                     response.sendRedirect("dangnhap.jsp?error=3"); // Error if teacher not found
                 }
-                // Redirect to teacher home page
             } else {
                 response.sendRedirect("index.jsp"); // Default redirect if role is not recognized
             }

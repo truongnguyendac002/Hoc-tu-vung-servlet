@@ -112,9 +112,9 @@ public class StudentDAO extends DAO {
 
         String sql = "SELECT s.studentID, s.First_Name, s.Last_Name, " +
                 "COUNT(sv.vocabularyID) as totalWords, " +
-                "SUM(CASE WHEN sv.Proficiency_Level= 1 THEN 1 ELSE 0 END) as beginner, " +
-                "SUM(CASE WHEN sv.Proficiency_Level = 2 THEN 1 ELSE 0 END) as intermediate, " +
-                "SUM(CASE WHEN sv.Proficiency_Level = 3 THEN 1 ELSE 0 END) as advanced " +
+                "SUM(CASE WHEN sv.Proficiency_Level= 0 THEN 1 ELSE 0 END) as beginner, " +
+                "SUM(CASE WHEN sv.Proficiency_Level = 1 THEN 1 ELSE 0 END) as intermediate, " +
+                "SUM(CASE WHEN sv.Proficiency_Level = 2 THEN 1 ELSE 0 END) as advanced " +
                 "FROM Student s " +
                 "JOIN StudentVocabulary sv ON s.studentID = sv.studentID " +
                 "GROUP BY s.First_Name, s.studentID, s.Last_Name";

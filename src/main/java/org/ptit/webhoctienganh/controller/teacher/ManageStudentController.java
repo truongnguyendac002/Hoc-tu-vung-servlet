@@ -18,20 +18,16 @@ public class ManageStudentController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Retrieve the list of students from the database
         StudentDAO studentDAO = new StudentDAO();
         List<Student> students = studentDAO.getAllStudents();
 
-        // Set the students list as a request attribute
         request.setAttribute("students", students);
 
-        // Forward the request to the JSP page
         RequestDispatcher dispatcher = request.getRequestDispatcher("manage_students.jsp");
         dispatcher.forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Handle add, edit, delete actions based on the request parameters
 
         String action = request.getParameter("action");
         StudentDAO studentDAO = new StudentDAO();
@@ -62,13 +58,10 @@ public class ManageStudentController extends HttpServlet {
             String address = request.getParameter("address");
             String classID = request.getParameter("classID");
 
-            // Tạo một đối tượng Student mới với thông tin đã chỉnh sửa
             Student student = new Student(studentID, firstName, lastName, phone, dateOfBirth, gender, address,null,null, classID);
 
-            // Sử dụng StudentDAO để cập nhật thông tin học viên trong cơ sở dữ liệu
             studentDAO.update(student);
 
-            // Sau khi chỉnh sửa, chuyển hướng lại trang quản lý học viên
             response.sendRedirect("manage-students");
 
         } else if ("delete".equals(action)) {

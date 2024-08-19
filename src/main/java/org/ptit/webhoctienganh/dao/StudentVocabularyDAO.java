@@ -123,7 +123,7 @@ public class StudentVocabularyDAO extends DAO {
                     newEasinessFactor = studentVocabulary.getEasinessFactor() + 0.1f - (0.08f * (studentVocabulary.getProficiencyLevel() - 3));
                 }
 
-                int interval = (int) Math.pow(2, newProficiencyLevel);
+                int interval = (int) (Math.pow(2, newProficiencyLevel) * newEasinessFactor);
                 newNextReviewDate = new Date(System.currentTimeMillis() + interval * 24 * 60 * 60 * 1000); // Interval in days
 
                 newProficiencyLevel++;

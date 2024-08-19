@@ -19,7 +19,6 @@ public class ViewStudentProgressController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         StudentDAO studentDAO = new StudentDAO();
 
-        // Retrieve the list of student progress data
         List<StudentProgress> studentProgressList = null;
         try {
             studentProgressList = studentDAO.getAllStudentProgress();
@@ -27,10 +26,8 @@ public class ViewStudentProgressController extends HttpServlet {
             throw new RuntimeException(e);
         }
 
-        // Set the list of student progress as an attribute in the request
         request.setAttribute("studentProgressList", studentProgressList);
 
-        // Forward the request to the JSP page
         request.getRequestDispatcher("viewstudentprogress.jsp").forward(request, response);
     }
 }
